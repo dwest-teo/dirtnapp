@@ -48,6 +48,12 @@ export default class Results extends PureComponent<Props, *> {
       return (
         <Main>
           <h1>sorry, no info found for {name}</h1>
+          <style jsx>{`
+            h1 {
+              max-width: 30em;
+              text-align: center;
+            }
+          `}</style>
         </Main>
       );
     }
