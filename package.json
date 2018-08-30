@@ -1,0 +1,180 @@
+{
+  "name": "dirtnapp",
+  "version": "1.0.0",
+  "private": true,
+  "main": "core/server.js",
+  "scripts": {
+    "dev": "micro-dev --watch core/server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production micro",
+    "start:release": "npm run build && npm run start",
+    "flow": "flow check",
+    "flow:watch": "flow-watch",
+    "lint": "eslint components/ pages/ core/ utils/",
+    "pretty": "prettier --write",
+    "precommit": "lint-staged",
+    "deploy:contract": "node contract/deploy.js",
+    "analyze": "BUNDLE_ANALYZE=both OFFLINE_SUPPORT=true NODE_ENV=production next build",
+    "analyze:browser": "BUNDLE_ANALYZE=browser OFFLINE_SUPPORT=true NODE_ENV=production next build",
+    "analyze:server": "BUNDLE_ANALYZE=server OFFLINE_SUPPORT=true NODE_ENV=production next build"
+  },
+  "dependencies": {
+    "@zeit/next-bundle-analyzer": "^0.1.1",
+    "isomorphic-fetch": "^2.2.1",
+    "micro": "^9.3.2",
+    "micro-compress": "^1.0.0",
+    "micro-route": "^2.5.0",
+    "next": "^6.0.3",
+    "next-compose-plugins": "^2.1.1",
+    "next-workbox-webpack-plugin": "^1.1.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "validator": "^10.3.0",
+    "webpack-bundle-analyzer": "^2.13.1",
+    "wikidata-sdk": "^5.15.4"
+  },
+  "devDependencies": {
+    "babel-eslint": "^9.0.0",
+    "babel-plugin-flow-react-proptypes": "^24.0.1",
+    "babel-plugin-styled-components": "^1.5.1",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "eslint": "^5.4.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-flowtype": "^2.47.1",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.8.2",
+    "flow-bin": "^0.79.1",
+    "flow-watch": "^1.1.3",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.1.2",
+    "micro-dev": "^3.0.0",
+    "prettier": "^1.12.1"
+  },
+  "babel": {
+    "presets": [
+      "next/babel"
+    ],
+    "plugins": [
+      [
+        "styled-components",
+        {
+          "ssr": true,
+          "displayName": true,
+          "preprocess": false
+        }
+      ],
+      "flow-react-proptypes",
+      "transform-flow-strip-types"
+    ],
+    "env": {
+      "production": {
+        "plugins": [
+          [
+            "styled-components",
+            {
+              "ssr": true,
+              "displayName": false,
+              "minify": true
+            }
+          ]
+        ]
+      }
+    }
+  },
+  "eslintConfig": {
+    "extends": [
+      "airbnb",
+      "plugin:flowtype/recommended",
+      "prettier",
+      "prettier/react",
+      "prettier/flowtype"
+    ],
+    "plugins": [
+      "flowtype",
+      "react"
+    ],
+    "rules": {
+      "max-len": [
+        "warn",
+        {
+          "code": 100,
+          "ignoreUrls": true,
+          "tabWidth": 2,
+          "ignoreComments": true,
+          "ignoreTemplateLiterals": true,
+          "ignoreTrailingComments": true
+        }
+      ],
+      "generator-star-spacing": 0,
+      "comma-dangle": [
+        "warn",
+        "always-multiline"
+      ],
+      "quotes": [
+        "error",
+        "single",
+        {
+          "allowTemplateLiterals": true,
+          "avoidEscape": true
+        }
+      ],
+      "object-curly-spacing": 0,
+      "no-confusing-arrow": 0,
+      "no-mixed-operators": 0,
+      "no-console": 1,
+      "no-trailing-spaces": 0,
+      "no-cond-assign": 0,
+      "dot-notation": 1,
+      "arrow-parens": [
+        "warn",
+        "as-needed"
+      ],
+      "class-methods-use-this": 0,
+      "no-use-before-define": [
+        "error",
+        {
+          "functions": false,
+          "classes": true
+        }
+      ],
+      "import/no-extraneous-dependencies": 0,
+      "import/prefer-default-export": "warn",
+      "import/no-named-as-default": 0,
+      "ava/no-ignored-test-files": 0,
+      "react/forbid-prop-types": [
+        2,
+        {
+          "forbid": [
+            "any"
+          ]
+        }
+      ],
+      "react/jsx-filename-extension": 0,
+      "jsx-a11y/anchor-is-valid": 0
+    },
+    "env": {
+      "browser": true,
+      "node": true,
+      "es6": true
+    },
+    "settings": {
+      "flowtype": {
+        "onlyFilesWithFlowAnnotation": true
+      }
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,jsx}": [
+      "yarn pretty --",
+      "git add"
+    ]
+  },
+  "prettier": {
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5"
+  }
+}
