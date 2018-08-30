@@ -41,7 +41,6 @@
   "devDependencies": {
     "babel-eslint": "^9.0.0",
     "babel-plugin-flow-react-proptypes": "^24.0.1",
-    "babel-plugin-styled-components": "^1.5.1",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "eslint": "^5.4.0",
     "eslint-config-airbnb": "^17.1.0",
@@ -62,31 +61,9 @@
       "next/babel"
     ],
     "plugins": [
-      [
-        "styled-components",
-        {
-          "ssr": true,
-          "displayName": true,
-          "preprocess": false
-        }
-      ],
       "flow-react-proptypes",
       "transform-flow-strip-types"
-    ],
-    "env": {
-      "production": {
-        "plugins": [
-          [
-            "styled-components",
-            {
-              "ssr": true,
-              "displayName": false,
-              "minify": true
-            }
-          ]
-        ]
-      }
-    }
+    ]
   },
   "eslintConfig": {
     "extends": [
