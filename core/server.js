@@ -15,6 +15,7 @@ const root = process.cwd();
 const indexRoute = route('/', 'GET');
 const serviceWorkerRoute = route('/sw.js', 'GET');
 const workboxRoute = route('/static/workbox/', 'GET');
+const iconsRoute = route('/static/icons/', 'GET');
 const robotsRoute = route('/robots.txt', 'GET');
 const apiRoute = route('/api', 'POST');
 
@@ -31,6 +32,10 @@ async function main(req, res) {
   }
 
   if (workboxRoute(req)) {
+    return app.serveStatic(req, res, join(root, `.${req.url}`));
+  }
+
+  if (iconsRoute(req)) {
     return app.serveStatic(req, res, join(root, `.${req.url}`));
   }
 
