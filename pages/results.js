@@ -1,6 +1,7 @@
 // @flow
 import React, { PureComponent } from 'react';
 import fetch from 'isomorphic-fetch';
+import Head from 'next/head';
 import Link from 'next/link';
 import Main from '../components/main';
 import ResultHeading from '../components/result-heading';
@@ -49,6 +50,9 @@ export default class Results extends PureComponent<Props, *> {
 
     return (
       <Main>
+        <Head>
+          <title>{name} | dirtn.app</title>
+        </Head>
         {results.length > 1 && <span>multiple people found:</span>}
         <div className="results">
           {results.map(r => (
