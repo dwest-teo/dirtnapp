@@ -18,7 +18,7 @@ export default class MyDocument extends Document {
               'minimum-scale=1, width=device-width, height=device-height'
             }
           />
-          {/* <link
+          <link
             rel="apple-touch-icon"
             sizes="180x180"
             href="/static/icons/apple-touch-icon.png"
@@ -49,7 +49,7 @@ export default class MyDocument extends Document {
             content="/static/icons/mstile-144x144.png"
           />
           <meta name="theme-color" content="#fff" />
-          <link rel="shortcut icon" href="/static/favicon.ico" /> */}
+          <link rel="shortcut icon" href="/static/favicon.ico" />
           <script
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
