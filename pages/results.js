@@ -1,10 +1,11 @@
 // @flow
-/* eslint react/no-unused-prop-types: 0 */
 import React, { PureComponent } from 'react';
 import fetch from 'isomorphic-fetch';
+import Link from 'next/link';
 import Main from '../components/main';
 import ResultHeading from '../components/result-heading';
 import Result, { type ResultItem } from '../components/result';
+import Anchor from '../components/anchor';
 import titleCase from '../core/utils/title-case';
 import { DEV_URL, PROD_URL } from '../core/constants';
 
@@ -15,7 +16,6 @@ type Props = {
 
 const BASE_URL = process.env.NODE_ENV === 'development' ? DEV_URL : PROD_URL;
 
-// TODO - handle multiple results
 export default class Results extends PureComponent<Props, *> {
   static getInitialProps = async ({ query }: { query: Object }) => {
     const name = await query.name;
@@ -40,6 +40,9 @@ export default class Results extends PureComponent<Props, *> {
       return (
         <Main>
           <ResultHeading>sorry, no info found for {name}</ResultHeading>
+          <Link prefetch passHref href="/">
+            <Anchor>check another person</Anchor>
+          </Link>
         </Main>
       );
     }
@@ -52,6 +55,9 @@ export default class Results extends PureComponent<Props, *> {
             <Result key={r.id.value} {...r} />
           ))}
         </div>
+        <Link prefetch passHref href="/">
+          <Anchor>check another person</Anchor>
+        </Link>
         <style jsx>{`
           span {
             font-size: 1.25rem;
@@ -61,6 +67,7 @@ export default class Results extends PureComponent<Props, *> {
           }
           .results {
             width: 100%;
+            margin-bottom: 2em;
           }
         `}</style>
       </Main>
