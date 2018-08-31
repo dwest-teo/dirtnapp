@@ -68,20 +68,19 @@ export default class Form extends PureComponent<*, State> {
             margin-top: 1rem;
             color: #fff;
             border: none;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: #357edd;
             -moz-osx-font-smoothing: grayscale;
-            backface-visibility: hidden;
-            transform: translateZ(0);
-            transition: transform 0.25s ease-out;
+            opacity: 1;
+            transition: opacity 0.15s ease-in;
             -webkit-appearance: none;
             -moz-appearance: none;
           }
           button:hover,
           button:focus {
-            transform: scale(1.05);
+            opacity: 0.8;
           }
           button:active {
-            transform: scale(0.9);
+            opacity: 0.8;
           }
           button:disabled {
             opacity: 0.5;
