@@ -18,19 +18,27 @@ export default ({ children }: Props) => (
     </footer>
     <style jsx>{`
       .main {
-        width: 100%;
-        height: 100vh;
+        max-width: 30em;
+        margin: 0 auto;
+        min-height: 100vh;
         display: flex;
         flex-flow: column nowrap;
         justify-content: center;
         align-items: center;
       }
       .content {
+        width: 100%;
         margin-top: auto;
         display: flex;
         flex-flow: column nowrap;
         justify-content: center;
         align-items: center;
+        padding: 0 0.67em;
+      }
+      @media screen and (min-width: 30em) {
+        .content {
+          padding: 0;
+        }
       }
       footer {
         margin-top: auto;

@@ -4,21 +4,13 @@ import React, { PureComponent } from 'react';
 import fetch from 'isomorphic-fetch';
 import Main from '../components/main';
 import ResultHeading from '../components/result-heading';
+import Result, { type ResultItem } from '../components/result';
 import titleCase from '../core/utils/title-case';
 import { DEV_URL, PROD_URL } from '../core/constants';
 
-type Result = ?{
-  id: {
-    value: string,
-    label: string,
-  },
-  birth_date: ?string,
-  dateOfDeath: ?string,
-};
-
 type Props = {
   name: string,
-  results: Array<Result>,
+  results: Array<ResultItem>,
 };
 
 const BASE_URL = process.env.NODE_ENV === 'development' ? DEV_URL : PROD_URL;
@@ -44,8 +36,7 @@ export default class Results extends PureComponent<Props, *> {
   render() {
     const { name, results } = this.props;
 
-    // $FlowFixMe
-    if (results.length === 0 || !results[0].birth_date) {
+    if (results.length === 0) {
       return (
         <Main>
           <ResultHeading>sorry, no info found for {name}</ResultHeading>
@@ -53,14 +44,25 @@ export default class Results extends PureComponent<Props, *> {
       );
     }
 
-    // $FlowFixMe
-    const status = results[0].dateOfDeath ? 'dead' : 'alive';
-
     return (
       <Main>
-        <ResultHeading>
-          {name} is {status}.
-        </ResultHeading>
+        {results.length > 1 && <span>multiple people found:</span>}
+        <div className="results">
+          {results.map(r => (
+            <Result key={r.id.value} {...r} />
+          ))}
+        </div>
+        <style jsx>{`
+          span {
+            font-size: 1.25rem;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 1em;
+          }
+          .results {
+            width: 100%;
+          }
+        `}</style>
       </Main>
     );
   }

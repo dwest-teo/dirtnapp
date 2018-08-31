@@ -3,15 +3,17 @@ const fetch = require('isomorphic-fetch');
 
 module.exports = async name => {
   const sparql = `
-    SELECT  DISTINCT ?id ?idLabel (SAMPLE(?birth) as ?birth_date)
-    (SAMPLE(?death_date) as ?dateOfDeath)  WHERE {
+    SELECT DISTINCT ?id ?idLabel (SAMPLE(year(?birth)) AS ?birthYear) (SAMPLE(year(?death_date)) AS ?deathYear) (SAMPLE(?occupationLabel) AS ?occupations) WHERE {
       ?id wdt:P31 wd:Q5.
-      ?id wdt:P569 ?birth .
-      OPTIONAL{?id wdt:P570 ?death_date .}
+      ?id wdt:P569 ?birth.
+      OPTIONAL { ?id wdt:P570 ?death_date. }
+      OPTIONAL { ?id wdt:P106 ?occupation. }
       SERVICE wikibase:label {
-      bd:serviceParam wikibase:language "en".
-      ?id rdfs:label ?idLabel .
-      }?id ?label "${name}"@en.
+        bd:serviceParam wikibase:language "en".
+        ?id rdfs:label ?idLabel.
+        ?occupation rdfs:label ?occupationLabel
+      }
+      ?id ?label "${name}"@en.
     }
     GROUP BY ?id ?idLabel
   `;
