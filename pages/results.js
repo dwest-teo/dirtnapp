@@ -3,6 +3,7 @@
 import React, { PureComponent } from 'react';
 import fetch from 'isomorphic-fetch';
 import Main from '../components/main';
+import ResultHeading from '../components/result-heading';
 import titleCase from '../core/utils/title-case';
 import { DEV_URL, PROD_URL } from '../core/constants';
 
@@ -47,13 +48,7 @@ export default class Results extends PureComponent<Props, *> {
     if (results.length === 0 || !results[0].birth_date) {
       return (
         <Main>
-          <h1>sorry, no info found for {name}</h1>
-          <style jsx>{`
-            h1 {
-              max-width: 30em;
-              text-align: center;
-            }
-          `}</style>
+          <ResultHeading>sorry, no info found for {name}</ResultHeading>
         </Main>
       );
     }
@@ -63,9 +58,9 @@ export default class Results extends PureComponent<Props, *> {
 
     return (
       <Main>
-        <h1>
+        <ResultHeading>
           {name} is {status}.
-        </h1>
+        </ResultHeading>
       </Main>
     );
   }
