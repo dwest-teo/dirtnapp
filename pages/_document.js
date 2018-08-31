@@ -39,16 +39,16 @@ export default class MyDocument extends Document {
           <link
             rel="mask-icon"
             href="/static/icons/safari-pinned-tab.svg"
-            color="#782cf5"
+            color="#357edd"
           />
           <meta name="apple-mobile-web-app-title" content="dirtnapp" />
           <meta name="application-name" content="dirtnapp" />
-          <meta name="msapplication-TileColor" content="#782cf5" />
+          <meta name="msapplication-TileColor" content="#357edd" />
           <meta
             name="msapplication-TileImage"
             content="/static/icons/mstile-144x144.png"
           />
-          <meta name="theme-color" content="#f8f8f8" />
+          <meta name="theme-color" content="#fff" />
           <link rel="shortcut icon" href="/static/favicon.ico" /> */}
           <script
             async
