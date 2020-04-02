@@ -1,10 +1,8 @@
 const { join } = require('path');
 const { parse } = require('url');
-const { json } = require('micro');
 const route = require('micro-route');
 const compress = require('micro-compress');
 const next = require('next');
-const api = require('./api');
 
 const dev = process.env.NODE_ENV !== 'production';
 
@@ -17,7 +15,6 @@ const serviceWorkerRoute = route('/sw.js', 'GET');
 const workboxRoute = route('/static/workbox/', 'GET');
 const iconsRoute = route('/static/icons/', 'GET');
 const robotsRoute = route('/robots.txt', 'GET');
-const apiRoute = route('/api', 'POST');
 
 async function main(req, res) {
   const parsedUrl = parse(req.url, true);
@@ -41,17 +38,6 @@ async function main(req, res) {
 
   if (robotsRoute(req)) {
     return app.serveStatic(req, res, join(root, `./static/${req.url}`));
-  }
-
-  if (apiRoute(req)) {
-    const data = await json(req);
-
-    if (data.name) {
-      const response = await api(data.name);
-      return response;
-    }
-
-    return { success: false };
   }
 
   return handle(req, res, parsedUrl);

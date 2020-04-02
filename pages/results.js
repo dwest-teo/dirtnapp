@@ -19,14 +19,13 @@ const BASE_URL = process.env.NODE_ENV === 'development' ? DEV_URL : PROD_URL;
 
 export default class Results extends PureComponent<Props, *> {
   static getInitialProps = async ({ query }: { query: Object }) => {
-    const name = await query.name;
-    const results = await fetch(`${BASE_URL}/api`, {
-      method: 'POST',
+    const { name } = await query;
+    const results = await fetch(`${BASE_URL}/api/${titleCase(name)}`, {
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         accept: 'application/json',
       },
-      body: JSON.stringify({ name: titleCase(name) }),
     })
       .then(res => res.json())
       .catch(err => console.error(err));
@@ -41,7 +40,7 @@ export default class Results extends PureComponent<Props, *> {
       return (
         <Main>
           <ResultHeading>sorry, no info found for {name}</ResultHeading>
-          <Link prefetch passHref href="/">
+          <Link passHref href="/">
             <Anchor>check another person</Anchor>
           </Link>
         </Main>
@@ -59,7 +58,7 @@ export default class Results extends PureComponent<Props, *> {
             <Result key={r.id.value} {...r} />
           ))}
         </div>
-        <Link prefetch passHref href="/">
+        <Link passHref href="/">
           <Anchor>check another person</Anchor>
         </Link>
         <style jsx>{`

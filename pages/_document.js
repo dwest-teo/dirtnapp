@@ -9,7 +9,6 @@ export default class MyDocument extends Document {
     return (
       <html lang="en" dir="ltr">
         <Head>
-          <title>dirtn.app</title>
           <meta charSet="utf-8" />
           <meta
             name="viewport"
@@ -57,27 +56,13 @@ export default class MyDocument extends Document {
           <script
             dangerouslySetInnerHTML={{
               __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GOOGLE_ANALYTICS_ID}');
-          `,
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GOOGLE_ANALYTICS_ID}');
+            `,
             }}
           />
-          <style jsx global>{`
-            *,
-            *:before,
-            *:after {
-              box-sizing: border-box;
-            }
-            body {
-              margin: 0;
-              font-family: -apple-system, BlinkMacSystemFont, avenir next,
-                avenir, helvetica neue, helvetica, ubuntu, roboto, noto,
-                segoe ui, arial, sans-serif;
-              color: rgba(0, 0, 0, 0.8);
-            }
-          `}</style>
         </Head>
         <body>
           <Main />

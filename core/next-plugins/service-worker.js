@@ -22,6 +22,7 @@ module.exports = (nextConfig = {}) =>
             buildId,
             clientsClaim: true,
             skipWaiting: true,
+            precacheManifest: true,
             runtimeCaching: [
               {
                 urlPattern: /\.(gif|png|gltf|bin|jpe?g|svg|ico)$/i,

@@ -1,7 +1,7 @@
-const wdk = require('wikidata-sdk');
-const fetch = require('isomorphic-fetch');
+import wdk from 'wikidata-sdk';
+import fetch from 'isomorphic-fetch';
 
-module.exports = async name => {
+export default async ({ query: { name } }, res) => {
   const sparql = `
     SELECT DISTINCT ?id ?idLabel (SAMPLE(year(?birth)) AS ?birthYear) (SAMPLE(year(?death_date)) AS ?deathYear) (SAMPLE(?occupationLabel) AS ?occupations) WHERE {
       ?id wdt:P31 wd:Q5.
@@ -17,10 +17,12 @@ module.exports = async name => {
     }
     GROUP BY ?id ?idLabel
   `;
+
   const url = wdk.sparqlQuery(sparql);
   const results = await fetch(url)
-    .then(res => res.json())
-    .then(wdk.simplify.sparqlResults);
+    .then(r => r.json())
+    .then(wdk.simplify.sparqlResults)
+    .catch(err => res.status(400).json(err));
 
-  return results;
+  res.status(200).json(results);
 };
