@@ -53,12 +53,12 @@ export default class Results extends PureComponent<Props, *> {
           <title>{name} | dirtn.app</title>
         </Head>
         {results.length > 1 && <h1>multiple people found:</h1>}
-        <div className="results">
+        <ul className="results">
           {results.map(r => (
             // $FlowFixMe
             <Result key={r.id.value} {...r} />
           ))}
-        </div>
+        </ul>
         <Link passHref href="/">
           <Anchor>check another person</Anchor>
         </Link>
@@ -71,7 +71,9 @@ export default class Results extends PureComponent<Props, *> {
           }
           .results {
             width: 100%;
-            margin-bottom: 2em;
+            margin: 0 auto 2em;
+            padding: 0;
+            list-style-type: none;
           }
         `}</style>
       </Main>

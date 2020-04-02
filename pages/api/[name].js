@@ -8,7 +8,7 @@ export default async ({ query: { name } }, res) => {
       ?id wdt:P569 ?birth.
       OPTIONAL { ?id wdt:P570 ?death_date. }
       OPTIONAL { ?id wdt:P106 ?occupation. }
-      OPTIONAL { ?id wdt:P18 ?pic.}
+      OPTIONAL { ?id wdt:P18 ?pic. }
       SERVICE wikibase:label {
         bd:serviceParam wikibase:language "en".
         ?id rdfs:label ?idLabel.
