@@ -33,4 +33,6 @@ const Anchor = ({ children, ...rest }: Props) => (
   </a>
 );
 
-export default forwardRef((props, ref) => <Anchor ref={ref} {...props} />);
+export default forwardRef<*, *>((props, ref) => (
+  <Anchor ref={ref} {...props} />
+));

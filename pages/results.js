@@ -52,9 +52,10 @@ export default class Results extends PureComponent<Props, *> {
         <Head>
           <title>{name} | dirtn.app</title>
         </Head>
-        {results.length > 1 && <span>multiple people found:</span>}
+        {results.length > 1 && <h1>multiple people found:</h1>}
         <div className="results">
           {results.map(r => (
+            // $FlowFixMe
             <Result key={r.id.value} {...r} />
           ))}
         </div>
@@ -62,11 +63,11 @@ export default class Results extends PureComponent<Props, *> {
           <Anchor>check another person</Anchor>
         </Link>
         <style jsx>{`
-          span {
+          h1 {
             font-size: 1.25rem;
             font-weight: 600;
             display: block;
-            margin-bottom: 1em;
+            margin: 1em 0;
           }
           .results {
             width: 100%;
