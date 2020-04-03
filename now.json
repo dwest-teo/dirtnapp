@@ -1,6 +1,4 @@
 {
-  "type": "docker",
-  "features": {
-    "cloud": "v2"
-  }
+  "name": "dirtnapp",
+  "version": 2
 }

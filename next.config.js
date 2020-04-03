@@ -1,18 +1,29 @@
-// eslint-disable-next-line no-unused-vars
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const withPlugins = require('next-compose-plugins');
-const bundleAnalyzer = require('@zeit/next-bundle-analyzer');
-const entry = require('./core/next-plugins/entry');
-const serviceWorker = require('./core/next-plugins/service-worker');
+const withOffline = require('next-offline');
 
-module.exports = withPlugins([
-  [
-    bundleAnalyzer,
-    {
-      analyzeServer: ['server', 'both'].includes(process.env.BUNDLE_ANALYZE),
-      analyzeBrowser: ['browser', 'both'].includes(process.env.BUNDLE_ANALYZE),
+module.exports = withOffline({
+  workboxOpts: {
+    swDest: process.env.NEXT_EXPORT
+      ? 'service-worker.js'
+      : 'static/service-worker.js',
+    runtimeCaching: [
+      {
+        urlPattern: /\.(gif|png|gltf|bin|jpe?g|svg|ico)$/i,
+        handler: 'CacheFirst',
+      },
+      {
+        urlPattern: /\.js$/i,
+        handler: 'CacheFirst',
+      },
+    ],
+  },
+  experimental: {
+    async rewrites() {
+      return [
+        {
+          source: '/service-worker.js',
+          destination: '/_next/static/service-worker.js',
+        },
+      ];
     },
-  ],
-  entry,
-  serviceWorker,
-]);
+  },
+});

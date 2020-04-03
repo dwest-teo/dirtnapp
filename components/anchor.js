@@ -1,12 +1,12 @@
 // @flow
-import React from 'react';
+import React, { forwardRef } from 'react';
 import type { Node } from 'react';
 
 type Props = {
   children: Node,
 };
 
-export default ({ children, ...rest }: Props) => (
+const Anchor = ({ children, ...rest }: Props) => (
   <a {...rest}>
     {children}
     <style jsx>{`
@@ -32,3 +32,7 @@ export default ({ children, ...rest }: Props) => (
     `}</style>
   </a>
 );
+
+export default forwardRef<*, *>((props, ref) => (
+  <Anchor ref={ref} {...props} />
+));
