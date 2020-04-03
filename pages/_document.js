@@ -19,36 +19,10 @@ export default class MyDocument extends Document {
           />
           <meta httpEquiv="x-dns-prefetch-control" content="on" />
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
-          <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="/icons/apple-touch-icon.png"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="32x32"
-            href="/icons/favicon-32x32.png"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="/icons/favicon-16x16.png"
-          />
           <link rel="manifest" href="/manifest.json" />
-          <link
-            rel="mask-icon"
-            href="/icons/safari-pinned-tab.svg"
-            color="#357edd"
-          />
           <meta name="apple-mobile-web-app-title" content="dirtnapp" />
           <meta name="application-name" content="dirtnapp" />
           <meta name="msapplication-TileColor" content="#357edd" />
-          <meta
-            name="msapplication-TileImage"
-            content="/icons/mstile-144x144.png"
-          />
           <meta name="theme-color" content="#fff" />
           <link rel="shortcut icon" href="/favicon.ico" />
           <script
