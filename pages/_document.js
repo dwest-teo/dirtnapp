@@ -22,24 +22,24 @@ export default class MyDocument extends Document {
           <link
             rel="apple-touch-icon"
             sizes="180x180"
-            href="/static/icons/apple-touch-icon.png"
+            href="/icons/apple-touch-icon.png"
           />
           <link
             rel="icon"
             type="image/png"
             sizes="32x32"
-            href="/static/icons/favicon-32x32.png"
+            href="/icons/favicon-32x32.png"
           />
           <link
             rel="icon"
             type="image/png"
             sizes="16x16"
-            href="/static/icons/favicon-16x16.png"
+            href="/icons/favicon-16x16.png"
           />
           <link rel="manifest" href="/manifest.json" />
           <link
             rel="mask-icon"
-            href="/static/icons/safari-pinned-tab.svg"
+            href="/icons/safari-pinned-tab.svg"
             color="#357edd"
           />
           <meta name="apple-mobile-web-app-title" content="dirtnapp" />
@@ -47,10 +47,10 @@ export default class MyDocument extends Document {
           <meta name="msapplication-TileColor" content="#357edd" />
           <meta
             name="msapplication-TileImage"
-            content="/static/icons/mstile-144x144.png"
+            content="/icons/mstile-144x144.png"
           />
           <meta name="theme-color" content="#fff" />
-          <link rel="shortcut icon" href="/static/favicon.ico" />
+          <link rel="shortcut icon" href="/favicon.ico" />
           <script
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
