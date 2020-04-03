@@ -1,5 +1,6 @@
 // @flow
-import React from 'react';
+import React, { memo } from 'react';
+import ImageAvatar from './image-avatar';
 
 export type ResultItem = {
   id: {
@@ -7,33 +8,18 @@ export type ResultItem = {
     label: string,
   },
   birthYear: number,
+  gender: string,
   deathYear: ?number,
   occupations: ?string,
   picture: ?string,
 };
 
-export default ({
-  id,
-  birthYear,
-  deathYear,
-  occupations,
-  picture,
-}: ResultItem) => {
-  const croppedImage = picture
-    ? `https://res.cloudinary.com/dcamzsxpt/image/fetch/w_64,h_64,c_fill,g_face,r_max,f_auto/${picture}`
-    : null;
-
-  return (
+export default memo<*, *>(
+  ({ id, birthYear, gender, deathYear, occupations, picture }: ResultItem) => (
     <li className="result">
       <div className="data">
         <div className="img-name-container">
-          {croppedImage ? (
-            <img src={croppedImage} alt={`${id.label}`} />
-          ) : (
-            <div className="avatar-circle">
-              <span className="avatar-content">{deathYear ? '👎' : '👍'}</span>
-            </div>
-          )}
+          <ImageAvatar label={id.label} picture={picture} gender={gender} />
           <div className="name-container">
             <h2 className="name">
               {id.label.toLowerCase()} is {deathYear ? 'dead 👎' : 'alive 👍'}
@@ -46,25 +32,6 @@ export default ({
         </span>
       </div>
       <style jsx>{`
-        img {
-          margin: 0 0 1em;
-        }
-        .avatar-circle {
-          position: relative;
-          width: 64px;
-          height: 64px;
-          background-color: rgba(0, 0, 0, 0.05);
-          text-align: center;
-          border-radius: 50%;
-          margin: 0 0 1em;
-        }
-        .avatar-content {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          font-size: 32px;
-        }
         .result {
           width: 100%;
           border-bottom-style: solid;
@@ -109,15 +76,9 @@ export default ({
           color: rgba(0, 0, 0, 0.6);
         }
         @media screen and (min-width: 30em) {
-          img {
-            margin: 0 1em 0 0;
-          }
           h1 {
             font-size: 1rem;
             margin-bottom: 0;
-          }
-          .avatar-circle {
-            margin: 0 1em 0 0;
           }
           .data {
             flex-direction: row;
@@ -130,5 +91,5 @@ export default ({
         }
       `}</style>
     </li>
-  );
-};
+  )
+);

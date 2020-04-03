@@ -11,14 +11,14 @@ export default ({ children }: Props) => (
     {children}
     <style jsx>{`
       .results-heading {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
         max-width: 30em;
         text-align: center;
-        margin: 0 0.67em 0;
+        margin: 0 0.67em 1em;
       }
       @media screen and (min-width: 30em) {
         .results-heading {
-          font-size: 2rem;
+          font-size: 1.5rem;
         }
       }
     `}</style>

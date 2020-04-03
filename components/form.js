@@ -18,10 +18,11 @@ export default class Form extends PureComponent<*, State> {
   onSubmit = (e: SyntheticEvent<*>) => {
     e.preventDefault();
     const { name } = this.state;
-    Router.push({
-      pathname: '/results',
-      query: { name },
-    });
+
+    const url = '/results/[name]';
+    const as = `/results/${name || ''}`;
+
+    Router.push(url, as);
   };
 
   render() {

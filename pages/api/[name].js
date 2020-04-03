@@ -3,9 +3,10 @@ import fetch from 'isomorphic-fetch';
 
 export default async ({ query: { name } }, res) => {
   const sparql = `
-  SELECT DISTINCT ?id ?idLabel (SAMPLE(year(?birth)) AS ?birthYear) (SAMPLE(year(?death_date)) AS ?deathYear) (SAMPLE(?occupationLabel) AS ?occupations) (SAMPLE(?pic) AS ?picture) WHERE {
+  SELECT DISTINCT ?id ?idLabel (SAMPLE(year(?birth)) AS ?birthYear) (SAMPLE(year(?death_date)) AS ?deathYear) (SAMPLE(?occupationLabel) AS ?occupations) (SAMPLE(?pic) AS ?picture) (SAMPLE(?genderLabel) AS ?gender) WHERE {
       ?id wdt:P31 wd:Q5.
       ?id wdt:P569 ?birth.
+      ?id wdt:P21 ?genderLabel.
       OPTIONAL { ?id wdt:P570 ?death_date. }
       OPTIONAL { ?id wdt:P106 ?occupation. }
       OPTIONAL { ?id wdt:P18 ?pic. }

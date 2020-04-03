@@ -1,14 +1,15 @@
 // @flow
 import React from 'react';
-import Head from 'next/head';
+import OG from '../components/og';
 import Main from '../components/main';
 import Form from '../components/form';
 
 export default () => (
   <>
-    <Head>
-      <title>dirtn.app</title>
-    </Head>
+    <OG
+      title="dirtn.app"
+      description="Find out if a person is alive or dead at dirtn.app"
+    />
     <Main>
       <h1>dirtnapp</h1>
       <Form />

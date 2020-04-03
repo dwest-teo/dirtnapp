@@ -1,14 +1,14 @@
 // @flow
 import React, { PureComponent } from 'react';
 import fetch from 'isomorphic-fetch';
-import Head from 'next/head';
 import Link from 'next/link';
-import Main from '../components/main';
-import ResultHeading from '../components/result-heading';
-import Result, { type ResultItem } from '../components/result';
-import Anchor from '../components/anchor';
-import titleCase from '../core/utils/title-case';
-import { DEV_URL, PROD_URL } from '../core/constants';
+import Main from '../../components/main';
+import OG from '../../components/og';
+import Result, { type ResultItem } from '../../components/result';
+import ResultHeading from '../../components/result/result-heading';
+import Anchor from '../../components/anchor';
+import titleCase from '../../core/utils/title-case';
+import { DEV_URL, PROD_URL } from '../../core/constants';
 
 type Props = {
   name: string,
@@ -39,6 +39,10 @@ export default class Results extends PureComponent<Props, *> {
     if (results.length === 0) {
       return (
         <Main>
+          <OG
+            title={`${name} | dirtn.app`}
+            description={`Find out if ${name} is alive or dead at dirtn.app`}
+          />
           <ResultHeading>sorry, no info found for {name}</ResultHeading>
           <Link passHref href="/">
             <Anchor>check another person</Anchor>
@@ -47,11 +51,17 @@ export default class Results extends PureComponent<Props, *> {
       );
     }
 
+    const firstResultWithImage = results.find(
+      r => r.picture && r.picture.length > 0
+    );
+
     return (
       <Main>
-        <Head>
-          <title>{name} | dirtn.app</title>
-        </Head>
+        <OG
+          title={`${name} | dirtn.app`}
+          description={`Find out if ${name} is alive or dead at dirtn.app`}
+          image={firstResultWithImage ? firstResultWithImage.picture : null}
+        />
         {results.length > 1 && <h1>multiple people found:</h1>}
         <ul className="results">
           {results.map(r => (

@@ -17,6 +17,8 @@ export default class MyDocument extends Document {
               'minimum-scale=1, width=device-width, height=device-height'
             }
           />
+          <meta httpEquiv="x-dns-prefetch-control" content="on" />
+          <meta httpEquiv="x-ua-compatible" content="ie=edge" />
           <link
             rel="apple-touch-icon"
             sizes="180x180"
