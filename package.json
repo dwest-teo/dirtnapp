@@ -10,32 +10,23 @@
   "license": "MIT",
   "main": "core/server.js",
   "scripts": {
-    "dev": "micro-dev --watch core/server.js",
+    "dev": "next dev",
     "build": "next build",
-    "start": "NODE_ENV=production micro",
+    "start": "NODE_ENV=production next start",
     "start:release": "npm run build && npm run start",
     "flow": "flow check",
     "flow:watch": "flow-watch",
     "lint": "eslint components/ pages/ core/ utils/",
     "pretty": "prettier --write",
-    "precommit": "lint-staged",
-    "analyze": "BUNDLE_ANALYZE=both OFFLINE_SUPPORT=true NODE_ENV=production next build",
-    "analyze:browser": "BUNDLE_ANALYZE=browser OFFLINE_SUPPORT=true NODE_ENV=production next build",
-    "analyze:server": "BUNDLE_ANALYZE=server OFFLINE_SUPPORT=true NODE_ENV=production next build"
+    "precommit": "lint-staged"
   },
   "dependencies": {
-    "@zeit/next-bundle-analyzer": "^0.1.1",
     "isomorphic-fetch": "^2.2.1",
-    "micro": "^9.3.4",
-    "micro-compress": "^1.0.0",
-    "micro-route": "^2.5.0",
     "next": "^9.3.4",
-    "next-compose-plugins": "^2.2.0",
-    "next-workbox-webpack-plugin": "^2.1.1",
+    "next-offline": "^5.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "validator": "^10.3.0",
-    "webpack-bundle-analyzer": "^2.13.1",
     "wikidata-sdk": "^5.15.4"
   },
   "devDependencies": {
